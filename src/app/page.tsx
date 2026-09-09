@@ -40,7 +40,7 @@ export default function Home() {
   return (
     <div className="relative flex min-h-dvh flex-col md:h-dvh md:overflow-hidden">
       <Image
-        src="/images/bg-homepage-deltawash.jpg"
+        src="/images/bg-homepage-deltawash.png"
         alt=""
         fill
         priority
