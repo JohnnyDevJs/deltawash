@@ -45,7 +45,7 @@ export default function Home() {
         fill
         priority
         sizes="100vw"
-        className="-z-10 object-fill object-bottom"
+        className="-z-10 object-cover object-bottom"
       />
 
       <Header activeHref="/" />
