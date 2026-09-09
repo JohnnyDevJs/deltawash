@@ -3,6 +3,7 @@ import Link from 'next/link'
 
 import { Container } from '@/components/container'
 import { MobileMenu } from '@/components/mobile-menu'
+import { FadeInHeader } from '@/components/motion/fade-in-header'
 import { Social } from '@/components/social'
 
 type NavItem = {
@@ -21,7 +22,7 @@ export type HeaderProps = {
 
 export function Header({ activeHref = '/' }: HeaderProps) {
   return (
-    <header className="w-full shrink-0 py-[clamp(1.25rem,3vh,2.5rem)]">
+    <FadeInHeader className="w-full shrink-0 py-[clamp(1.25rem,3vh,2.5rem)]">
       <Container className="flex items-center justify-between gap-8">
         <Link href="/" aria-label="DeltaWash Advanced Cleaning">
           <Image
@@ -64,6 +65,6 @@ export function Header({ activeHref = '/' }: HeaderProps) {
 
         <MobileMenu navItems={navItems} activeHref={activeHref} />
       </Container>
-    </header>
+    </FadeInHeader>
   )
 }
