@@ -1,26 +1,106 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: hsl(237.5 49% 19.2%);
+  --background-variant: hsl(232.2 42.9% 24.7%);
+
+  --primary: hsl(12.8 79.9% 44.9%);
+  --primary-variant: hsl(17.2 87.8% 48.2%);
+  --primary-dark: hsl(12.8 79.9% 37.9%);
+  --primary-foreground: hsl(0 0% 100%);
+
+  --secondary: hsl(187.8 53.5% 60.4%);
+  --secondary-variant: hsl(189.5 50.7% 70.6%);
+  --secondary-dark: hsl(187.8 53.5% 53.4%);
+  --secondary-foreground: hsl(237.5 49% 19.2%);
+
+  --foreground: hsl(225 40% 96%);
+  --muted: hsl(226 25% 72%);
+  --border: hsl(232 33% 33%);
+  --ring: hsl(187.8 53.5% 60.4%);
+
+  --success: hsl(152 55% 45%);
+  --warning: hsl(38 88% 55%);
+  --danger: hsl(2 70% 52%);
+  --info: hsl(200 70% 58%);
 }
 
 @theme inline {
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-background-variant: var(--background-variant);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-primary: var(--primary);
+  --color-primary-variant: var(--primary-variant);
+  --color-primary-dark: var(--primary-dark);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-variant: var(--secondary-variant);
+  --color-secondary-dark: var(--secondary-dark);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-info: var(--info);
+
+  --font-sans: var(--font-montserrat);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+@keyframes overlay-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes overlay-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes panel-slide-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes panel-slide-out {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
