@@ -11,19 +11,16 @@ import { WhatsAppButton } from '@/components/whatsapp-button'
 
 const heroSlides: HeroSlide[] = [
   {
-    title: 'Do seu espaço ao seu carro, cuidado em cada detalhe.',
-    description:
-      'Deep Clean e Auto Detailing com o padrão de excelência Deltawash.',
+    title: 'Do seu espaço ao seu carro.',
+    description: 'Deep Clean e Auto Detailing com o padrão Deltawash.',
   },
   {
-    title: 'Excelência que transforma ambientes e veículos.',
-    description:
-      'Limpeza profunda e estética automotiva com atenção, qualidade e cuidado em cada detalhe.',
+    title: 'Excelência que transforma.',
+    description: 'Limpeza profunda e estética automotiva em cada detalhe.',
   },
   {
-    title: 'Cuidado completo, dentro e fora de casa.',
-    description:
-      'Soluções especializadas que renovam seus espaços e valorizam cada detalhe do seu veículo.',
+    title: 'Cuidado completo, dentro e fora.',
+    description: 'Renovamos seus espaços e valorizamos seu veículo.',
   },
 ]
 
