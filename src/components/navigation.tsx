@@ -45,12 +45,22 @@ export function Navigation({ activeHref = '/' }: NavigationProps) {
               <Link
                 href={item.href}
                 aria-current={isActive ? 'page' : undefined}
-                className={`flex flex-col items-center gap-1 py-2 text-[11px] font-semibold tracking-wide uppercase transition-colors ${
-                  isActive ? 'text-secondary' : 'text-white'
-                }`}
+                className="flex flex-col items-center gap-1 py-2 text-[11px] font-semibold tracking-wide uppercase"
               >
-                {item.icon}
-                {item.label}
+                <span
+                  className={`transition-colors ${
+                    isActive ? 'text-primary' : 'text-white'
+                  }`}
+                >
+                  {item.icon}
+                </span>
+                <span
+                  className={`transition-colors ${
+                    isActive ? 'text-secondary' : 'text-white'
+                  }`}
+                >
+                  {item.label}
+                </span>
               </Link>
             </li>
           )

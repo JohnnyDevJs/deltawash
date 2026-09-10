@@ -14,12 +14,12 @@ const socialLinks: SocialLink[] = [
   {
     label: 'Siga-nos Facebook',
     href: 'https://www.facebook.com/',
-    icon: <FaFacebookF className="size-5 text-white" />,
+    icon: <FaFacebookF className="size-5" />,
   },
   {
     label: 'Siga-nos no Instagram',
     href: 'https://www.instagram.com/',
-    icon: <FaInstagram className="size-5 text-white" />,
+    icon: <FaInstagram className="size-5" />,
   },
 ]
 
@@ -40,7 +40,7 @@ export function Social({ className = '' }: SocialProps) {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="border-secondary text-secondary hover:bg-secondary hover:text-background flex size-9 items-center justify-center rounded-full border-2 text-lg transition-all duration-500"
+                  className="border-secondary hover:bg-secondary hover:text-background flex size-9 items-center justify-center rounded-full border-2 text-lg text-white transition-all duration-500"
                 >
                   {social.icon}
                 </a>

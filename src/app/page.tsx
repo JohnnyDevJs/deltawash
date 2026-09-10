@@ -7,6 +7,7 @@ import type { HeroSlide } from '@/components/hero-banner'
 import { HeroBanner } from '@/components/hero-banner'
 import { Navigation } from '@/components/navigation'
 import { Services } from '@/components/services'
+import { WhatsAppButton } from '@/components/whatsapp-button'
 
 const heroSlides: HeroSlide[] = [
   {
@@ -70,6 +71,8 @@ export default function Home() {
       <Footer />
 
       <Navigation activeHref="/" />
+
+      <WhatsAppButton />
     </div>
   )
 }
