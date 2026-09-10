@@ -2,7 +2,6 @@ import Link from 'next/link'
 
 import { Container } from '@/components/container'
 import { LogoDeltaWash } from '@/components/logo-deltawash'
-import { MobileMenu } from '@/components/mobile-menu'
 import { FadeInHeader } from '@/components/motion/fade-in-header'
 import { Social } from '@/components/social'
 
@@ -14,6 +13,7 @@ type NavItem = {
 const navItems: NavItem[] = [
   { label: 'Início', href: '/' },
   { label: 'Sobre', href: '/sobre' },
+  { label: 'Fale Conosco', href: '/fale-conosco' },
 ]
 
 export type HeaderProps = {
@@ -22,18 +22,18 @@ export type HeaderProps = {
 
 export function Header({ activeHref = '/' }: HeaderProps) {
   return (
-    <FadeInHeader className="bg-background-dark group-has-[[data-service=auto-detailing]_button:hover]/page:bg-primary-dark fixed inset-x-0 top-0 z-30 w-full shrink-0 py-3 transition-colors duration-700 ease-out md:relative md:bg-transparent md:py-[clamp(1.25rem,3vh,2.5rem)] md:group-has-[[data-service=auto-detailing]_button:hover]/page:bg-transparent">
+    <FadeInHeader className="fixed inset-x-0 top-0 z-30 w-full shrink-0 bg-transparent py-3 md:relative md:py-[clamp(1.25rem,3vh,2.5rem)]">
       <Container className="flex items-center justify-between gap-8">
         <Link href="/" aria-label="DeltaWash Advanced Cleaning">
           <LogoDeltaWash
             role="img"
             aria-label="DeltaWash Advanced Cleaning"
-            className="text-primary h-[clamp(3rem,7vh,4rem)] w-auto transition-colors duration-700 ease-out group-has-[[data-service=auto-detailing]_button:hover]/page:text-white"
+            className="text-primary h-10 w-auto transition-colors duration-700 ease-out group-has-[[data-service=auto-detailing]_button:hover]/page:text-white md:h-[clamp(3rem,7vh,4rem)]"
           />
         </Link>
 
-        <div className="hidden items-center gap-8 md:flex lg:gap-12">
-          <nav aria-label="Menu principal">
+        <div className="flex items-center gap-8 lg:gap-12">
+          <nav aria-label="Menu principal" className="hidden md:block">
             <ul className="flex items-center gap-8 lg:gap-10">
               {navItems.map((item) => {
                 const isActive = item.href === activeHref
@@ -59,8 +59,6 @@ export function Header({ activeHref = '/' }: HeaderProps) {
 
           <Social />
         </div>
-
-        <MobileMenu navItems={navItems} activeHref={activeHref} />
       </Container>
     </FadeInHeader>
   )

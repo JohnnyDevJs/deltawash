@@ -31,9 +31,29 @@ export function HeroBanner({ slides, interval = 7000 }: HeroBannerProps) {
   const activeSlide = slides[activeIndex]
 
   return (
-    <div className="relative text-center">
+    <div className="relative grid text-center [grid-template-areas:'slide']">
+      <div
+        aria-hidden
+        className="invisible grid [grid-area:slide] [grid-template-areas:'measure']"
+      >
+        {slides.map((slide) => (
+          <div key={slide.title} className="[grid-area:measure]">
+            <p className="m-auto max-w-[22ch] text-3xl leading-[1.12] font-extrabold tracking-tight text-balance md:text-[clamp(2rem,5vh,4.5rem)]">
+              {slide.title}
+            </p>
+            <p className="mx-auto mt-[clamp(0.75rem,1.5vh,1.25rem)] max-w-[21.7em] text-base font-medium md:text-[clamp(1rem,2.1vh,1.375rem)]">
+              {slide.description}
+            </p>
+          </div>
+        ))}
+      </div>
+
       <AnimatePresence mode="wait">
-        <motion.div key={activeIndex} exit={{ opacity: 0, y: -16 }}>
+        <motion.div
+          key={activeIndex}
+          exit={{ opacity: 0, y: -16 }}
+          className="[grid-area:slide]"
+        >
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}

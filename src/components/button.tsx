@@ -26,12 +26,12 @@ export function Button({
   return (
     <button
       type={type}
-      className={`group inline-flex cursor-pointer items-center justify-center gap-4 rounded-full px-10 py-4 text-base font-bold tracking-tight transition-all duration-500 focus:outline-none disabled:pointer-events-none disabled:opacity-50 ${variantStyles[variant]} ${className}`}
+      className={`group inline-flex cursor-pointer items-center justify-center gap-3 rounded-full px-7 py-3 text-[14px] font-bold tracking-tight transition-all duration-500 focus:outline-none disabled:pointer-events-none disabled:opacity-50 md:gap-4 md:px-10 md:py-4 md:text-base ${variantStyles[variant]} ${className}`}
       {...props}
     >
       {children}
       {icon ? (
-        <span className="text-xl transition-all group-hover:translate-x-1">
+        <span className="text-[1.25em] transition-all group-hover:translate-x-1">
           {icon}
         </span>
       ) : null}
