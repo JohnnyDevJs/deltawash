@@ -28,7 +28,7 @@ const heroSlides: HeroSlide[] = [
 
 export default function Home() {
   return (
-    <div className="group/page relative flex min-h-dvh flex-col pb-[4rem] md:h-dvh md:overflow-hidden md:pb-0">
+    <div className="group/page relative flex min-h-dvh flex-col pb-[calc(4rem+env(safe-area-inset-bottom))] md:h-dvh md:overflow-hidden md:pb-0">
       <Image
         src="/images/bg-homepage-deltawash.png"
         alt=""
@@ -59,7 +59,7 @@ export default function Home() {
 
       <Header activeHref="/" />
 
-      <main className="flex min-h-0 flex-1 flex-col pt-[calc(1.5rem+2.5rem+2rem)] md:pt-0">
+      <main className="flex min-h-0 flex-1 flex-col pt-[calc(env(safe-area-inset-top)+1.5rem+2.5rem+2rem)] md:pt-0">
         <Container className="shrink-0 pb-[clamp(1rem,3vh,2.5rem)]">
           <HeroBanner slides={heroSlides} />
         </Container>
