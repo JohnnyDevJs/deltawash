@@ -38,7 +38,7 @@ export function HeroBanner({ slides, interval = 7000 }: HeroBannerProps) {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="m-auto max-w-[22ch] text-[clamp(2rem,5vh,4.5rem)] leading-[1.12] font-extrabold tracking-tight text-balance text-white"
+            className="m-auto max-w-[22ch] text-3xl leading-[1.12] font-extrabold tracking-tight text-balance text-white md:text-[clamp(2rem,5vh,4.5rem)]"
           >
             {activeSlide.title}
           </motion.h1>
@@ -46,7 +46,7 @@ export function HeroBanner({ slides, interval = 7000 }: HeroBannerProps) {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="mx-auto mt-[clamp(0.75rem,1.5vh,1.25rem)] max-w-[21.7em] text-[clamp(1rem,2.1vh,1.375rem)] font-medium text-white"
+            className="mx-auto mt-[clamp(0.75rem,1.5vh,1.25rem)] max-w-[21.7em] text-base font-medium text-white md:text-[clamp(1rem,2.1vh,1.375rem)]"
           >
             {activeSlide.description}
           </motion.p>
