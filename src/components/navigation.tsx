@@ -34,7 +34,7 @@ export function Navigation({ activeHref = '/' }: NavigationProps) {
   return (
     <nav
       aria-label="Menu principal"
-      className="bg-background fixed inset-x-0 bottom-0 z-30 md:hidden"
+      className="bg-background fixed inset-x-0 bottom-0 z-30 pb-[env(safe-area-inset-bottom)] md:hidden"
     >
       <ul className="flex items-stretch justify-around">
         {navigationItems.map((item) => {
