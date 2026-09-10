@@ -42,7 +42,7 @@ export type ServicesProps = {
 export function Services({ className = '' }: ServicesProps) {
   return (
     <Container
-      className={`grid min-h-0 grid-cols-1 items-end gap-12 pb-8 md:mt-auto md:flex-1 md:grid-cols-2 md:gap-8 md:pb-[clamp(0.75rem,2vh,1.5rem)] ${className}`}
+      className={`grid min-h-0 grid-cols-1 items-end gap-8 pb-8 md:mt-auto md:flex-1 md:grid-cols-2 md:gap-6 md:pb-[clamp(0.75rem,2vh,1.5rem)] ${className}`}
     >
       {services.map((service, index) => (
         <FadeIn
