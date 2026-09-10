@@ -33,30 +33,33 @@ export function HeroBanner({ slides, interval = 7000 }: HeroBannerProps) {
 
   const activeSlide = slides[activeIndex]
 
+  const goToNext = () =>
+    setActiveIndex((current) => (current + 1) % slides.length)
+
+  const goToPrevious = () =>
+    setActiveIndex((current) => (current - 1 + slides.length) % slides.length)
+
   return (
     <motion.div style={{ opacity, y }} className="relative">
-      <div className="grid text-center [grid-template-areas:'slide']">
-        <div
-          aria-hidden
-          className="invisible grid [grid-area:slide] [grid-template-areas:'measure']"
-        >
-          {slides.map((slide) => (
-            <div key={slide.title} className="[grid-area:measure]">
-              <p className="m-auto max-w-[22ch] text-3xl leading-[1.12] font-extrabold tracking-tight text-balance md:text-[clamp(2rem,5vh,4.5rem)]">
-                {slide.title}
-              </p>
-              <p className="mx-auto mt-[clamp(0.75rem,1.5vh,1.25rem)] max-w-[21.7em] text-base font-medium md:text-[clamp(1rem,2.1vh,1.375rem)]">
-                {slide.description}
-              </p>
-            </div>
-          ))}
-        </div>
-
+      <div className="text-center">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeIndex}
             exit={{ opacity: 0, y: -16 }}
-            className="[grid-area:slide]"
+            drag={slides.length > 1 ? 'x' : false}
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.2}
+            onDragEnd={(_, info) => {
+              if (info.offset.x < -60) {
+                goToNext()
+                return
+              }
+
+              if (info.offset.x > 60) {
+                goToPrevious()
+              }
+            }}
+            className="cursor-grab touch-pan-y active:cursor-grabbing md:cursor-default"
           >
             <motion.h1
               initial={{ opacity: 0, y: 16 }}
@@ -87,7 +90,7 @@ export function HeroBanner({ slides, interval = 7000 }: HeroBannerProps) {
       </div>
 
       {slides.length > 1 ? (
-        <div className="mt-[clamp(1rem,2.5vh,1.75rem)] flex items-center justify-center gap-2">
+        <div className="mt-[clamp(0.5rem,1.5vh,1rem)] flex items-center justify-center gap-2">
           {slides.map((slide, index) => {
             const isActive = index === activeIndex
 
