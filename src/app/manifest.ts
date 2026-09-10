@@ -2,10 +2,10 @@ import type { MetadataRoute } from 'next'
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'DeltaWash | Advanced Cleaning',
-    short_name: 'DeltaWash',
+    name: 'Deltawash | Advanced Cleaning',
+    short_name: 'Deltawash',
     description:
-      'Deep Clean e Auto Detailing com o padrão de excelência DeltaWash.',
+      'Deep Clean e Auto Detailing com o padrão de excelência Deltawash.',
     start_url: '/',
     scope: '/',
     display: 'standalone',

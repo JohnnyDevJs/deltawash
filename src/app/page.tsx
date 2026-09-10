@@ -12,7 +12,7 @@ const heroSlides: HeroSlide[] = [
   {
     title: 'Do seu espaço ao seu carro, cuidado em cada detalhe.',
     description:
-      'Deep Clean e Auto Detailing com o padrão de excelência DeltaWash.',
+      'Deep Clean e Auto Detailing com o padrão de excelência Deltawash.',
   },
   {
     title: 'Excelência que transforma ambientes e veículos.',

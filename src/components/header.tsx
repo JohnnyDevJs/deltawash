@@ -24,10 +24,10 @@ export function Header({ activeHref = '/' }: HeaderProps) {
   return (
     <FadeInHeader className="fixed inset-x-0 top-0 z-30 w-full shrink-0 pt-[calc(env(safe-area-inset-top)+0.75rem)] pb-3 md:relative md:pt-[clamp(1.25rem,3vh,2.5rem)] md:pb-[clamp(1.25rem,3vh,2.5rem)]">
       <Container className="flex items-center justify-between gap-8">
-        <Link href="/" aria-label="DeltaWash Advanced Cleaning">
+        <Link href="/" aria-label="Deltawash Advanced Cleaning">
           <LogoDeltaWash
             role="img"
-            aria-label="DeltaWash Advanced Cleaning"
+            aria-label="Deltawash Advanced Cleaning"
             className="text-primary h-10 w-auto transition-colors duration-700 ease-out group-has-[[data-service=auto-detailing]_button:hover]/page:text-white md:h-[clamp(3rem,7vh,4rem)]"
           />
         </Link>

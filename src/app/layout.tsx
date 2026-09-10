@@ -15,11 +15,11 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: 'Deltawash | Advanced Cleaning',
   description:
-    'Deep Clean e Auto Detailing com o padrão de excelência DeltaWash.',
-  applicationName: 'DeltaWash',
+    'Deep Clean e Auto Detailing com o padrão de excelência Deltawash.',
+  applicationName: 'Deltawash',
   appleWebApp: {
     capable: true,
-    title: 'DeltaWash',
+    title: 'Deltawash',
     statusBarStyle: 'black-translucent',
   },
   icons: {
