@@ -43,9 +43,9 @@ export function FadeInHeader({ children, ...props }: FadeInHeaderProps) {
       <motion.div
         aria-hidden
         style={{ opacity: backgroundOpacity }}
-        className="bg-background pointer-events-none absolute inset-0 -z-10 md:hidden"
+        className="bg-background pointer-events-none absolute inset-0 md:hidden"
       />
-      {children}
+      <div className="relative">{children}</div>
     </motion.header>
   )
 }
