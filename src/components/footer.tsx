@@ -7,7 +7,7 @@ export type FooterProps = {
 }
 
 export function Footer({
-  companyName = 'DeltaWash',
+  companyName = 'Deltawash',
   companySlogan = 'Advanced Cleaning',
 }: FooterProps) {
   const currentYear = new Date().getFullYear()

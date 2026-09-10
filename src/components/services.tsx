@@ -58,7 +58,7 @@ export function Services({ className = '' }: ServicesProps) {
           >
             <Image
               src={service.logoSrc}
-              alt={`DeltaWash ${service.title}`}
+              alt={`Deltawash ${service.title}`}
               width={288}
               height={288}
               priority
