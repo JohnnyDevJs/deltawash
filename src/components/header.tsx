@@ -43,9 +43,9 @@ export function Header({ activeHref = '/' }: HeaderProps) {
                     <Link
                       href={item.href}
                       aria-current={isActive ? 'page' : undefined}
-                      className={`hover:text-secondary border-b-3 pb-1 text-base font-semibold transition-colors duration-500 ${
+                      className={`hover:text-primary border-b-3 pb-1 text-base font-semibold transition-colors duration-500 ${
                         isActive
-                          ? 'border-secondary text-white'
+                          ? 'border-primary group-has-[[data-service=auto-detailing]_button:hover]/page:border-secondary text-white'
                           : 'border-transparent text-white'
                       }`}
                     >
