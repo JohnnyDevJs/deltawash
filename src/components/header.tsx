@@ -22,7 +22,7 @@ export type HeaderProps = {
 
 export function Header({ activeHref = '/' }: HeaderProps) {
   return (
-    <FadeInHeader className="w-full shrink-0 py-[clamp(1.25rem,3vh,2.5rem)]">
+    <FadeInHeader className="bg-background-dark group-has-[[data-service=auto-detailing]_button:hover]/page:bg-primary-dark fixed inset-x-0 top-0 z-30 w-full shrink-0 py-3 transition-colors duration-700 ease-out md:relative md:bg-transparent md:py-[clamp(1.25rem,3vh,2.5rem)] md:group-has-[[data-service=auto-detailing]_button:hover]/page:bg-transparent">
       <Container className="flex items-center justify-between gap-8">
         <Link href="/" aria-label="DeltaWash Advanced Cleaning">
           <LogoDeltaWash

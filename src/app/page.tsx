@@ -66,7 +66,12 @@ export default function Home() {
         fill
         priority
         sizes="100vw"
-        className="-z-10 object-cover object-bottom"
+        className="-z-10 hidden object-cover object-bottom md:block"
+      />
+
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-30 bg-[radial-gradient(ellipse_at_center,var(--background-variant)_0%,var(--background)_75%)] md:hidden"
       />
 
       <div
@@ -76,7 +81,7 @@ export default function Home() {
 
       <Header activeHref="/" />
 
-      <main className="flex min-h-0 flex-1 flex-col">
+      <main className="flex min-h-0 flex-1 flex-col pt-[calc(1.5rem+clamp(3rem,7vh,4rem)+2rem)] md:pt-0">
         <Container className="shrink-0 pb-[clamp(1rem,3vh,2.5rem)]">
           <HeroBanner slides={heroSlides} />
         </Container>
