@@ -20,6 +20,7 @@
   --border: hsl(232 33% 33%);
   --ring: hsl(187.8 53.5% 60.4%);
 
+  --whatsapp: #25d366;
   --success: hsl(152 55% 45%);
   --warning: hsl(38 88% 55%);
   --danger: hsl(2 70% 52%);
@@ -46,6 +47,7 @@
   --color-border: var(--border);
   --color-ring: var(--ring);
 
+  --color-whatsapp: var(--whatsapp);
   --color-success: var(--success);
   --color-warning: var(--warning);
   --color-danger: var(--danger);
@@ -137,5 +139,16 @@ body {
   to {
     opacity: 0;
     transform: translateY(-4px) scale(0.96);
+  }
+}
+
+@keyframes whatsapp-bounce {
+  0%,
+  20%,
+  100% {
+    transform: translateY(0);
+  }
+  10% {
+    transform: translateY(-6px);
   }
 }

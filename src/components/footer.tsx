@@ -13,7 +13,7 @@ export function Footer({
   const currentYear = new Date().getFullYear()
 
   return (
-    <FadeInFooter className="w-full shrink-0 pb-[clamp(0.75rem,2vh,1.5rem)]">
+    <FadeInFooter className="hidden w-full shrink-0 pb-[clamp(0.75rem,2vh,1.5rem)] md:block">
       <Container>
         <p className="text-center text-[12px] text-white">
           © {currentYear} {companyName} - {companySlogan}. Todos os direitos
