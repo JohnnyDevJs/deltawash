@@ -3,43 +3,13 @@ import Image from 'next/image'
 import { Button } from '@/components/button'
 import { Container } from '@/components/container'
 import { FadeIn } from '@/components/motion/fade-in'
+import { services } from '@/constants/service'
 
-export type ServiceCard = {
-  title: string
-  description: string
-  logoSrc: string
-  buttonLabel: string
-  buttonVariant: 'secondary' | 'outline'
-  align: 'start' | 'end'
-  slug: string
-}
-
-const services: ServiceCard[] = [
-  {
-    title: 'Deep Clean',
-    description: 'Casas, ambientes e estofados.',
-    logoSrc: '/images/logo-deltawash-deep-clean.svg',
-    buttonLabel: 'Acessar Deep Clean',
-    buttonVariant: 'secondary',
-    align: 'start',
-    slug: 'deep-clean',
-  },
-  {
-    title: 'Auto Detailing',
-    description: 'Cuidado completo para o seu veículo.',
-    logoSrc: '/images/logo-deltawash-auto-detailing.svg',
-    buttonLabel: 'Acessar Auto Detailing',
-    buttonVariant: 'outline',
-    align: 'end',
-    slug: 'auto-detailing',
-  },
-]
-
-export type ServicesProps = {
+export type ServiceProps = {
   className?: string
 }
 
-export function Services({ className = '' }: ServicesProps) {
+export function Service({ className = '' }: ServiceProps) {
   return (
     <Container
       className={`grid min-h-0 grid-cols-1 items-end gap-8 pb-8 md:mt-auto md:flex-1 md:grid-cols-2 md:gap-6 md:pb-[clamp(0.75rem,2vh,1.5rem)] ${className}`}

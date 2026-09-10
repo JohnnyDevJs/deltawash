@@ -3,26 +3,11 @@ import Image from 'next/image'
 import { Container } from '@/components/container'
 import { Footer } from '@/components/footer'
 import { Header } from '@/components/header'
-import type { HeroSlide } from '@/components/hero-banner'
 import { HeroBanner } from '@/components/hero-banner'
 import { Navigation } from '@/components/navigation'
-import { Services } from '@/components/services'
+import { Service } from '@/components/service'
 import { WhatsAppButton } from '@/components/whatsapp-button'
-
-const heroSlides: HeroSlide[] = [
-  {
-    title: 'Do seu espaço ao seu carro.',
-    description: 'Deep Clean e Auto Detailing com o padrão Deltawash.',
-  },
-  {
-    title: 'Excelência que transforma.',
-    description: 'Limpeza profunda e estética automotiva em cada detalhe.',
-  },
-  {
-    title: 'Cuidado completo, dentro e fora.',
-    description: 'Renovamos seus espaços e valorizamos seu veículo.',
-  },
-]
+import { heroSlides } from '@/constants/hero'
 
 export default function Home() {
   return (
@@ -62,7 +47,7 @@ export default function Home() {
           <HeroBanner slides={heroSlides} />
         </Container>
 
-        <Services />
+        <Service />
       </main>
 
       <Footer />

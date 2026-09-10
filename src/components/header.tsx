@@ -4,17 +4,7 @@ import { Container } from '@/components/container'
 import { LogoDeltaWash } from '@/components/logo-deltawash'
 import { FadeInHeader } from '@/components/motion/fade-in-header'
 import { Social } from '@/components/social'
-
-type NavItem = {
-  label: string
-  href: string
-}
-
-const navItems: NavItem[] = [
-  { label: 'Início', href: '/' },
-  { label: 'Sobre', href: '/sobre' },
-  { label: 'Fale Conosco', href: '/fale-conosco' },
-]
+import { menuItems } from '@/constants/menu'
 
 export type HeaderProps = {
   activeHref?: string
@@ -35,7 +25,7 @@ export function Header({ activeHref = '/' }: HeaderProps) {
         <div className="flex items-center gap-8 lg:gap-12">
           <nav aria-label="Menu principal" className="hidden md:block">
             <ul className="flex items-center gap-8 lg:gap-10">
-              {navItems.map((item) => {
+              {menuItems.map((item) => {
                 const isActive = item.href === activeHref
 
                 return (
