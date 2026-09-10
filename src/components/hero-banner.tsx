@@ -29,59 +29,85 @@ export function HeroBanner({ slides, interval = 7000 }: HeroBannerProps) {
     }, interval)
 
     return () => clearInterval(timer)
-  }, [slides.length, interval])
+  }, [slides.length, interval, activeIndex])
 
   const activeSlide = slides[activeIndex]
 
   return (
-    <motion.div
-      style={{ opacity, y }}
-      className="relative grid text-center [grid-template-areas:'slide']"
-    >
-      <div
-        aria-hidden
-        className="invisible grid [grid-area:slide] [grid-template-areas:'measure']"
-      >
-        {slides.map((slide) => (
-          <div key={slide.title} className="[grid-area:measure]">
-            <p className="m-auto max-w-[22ch] text-3xl leading-[1.12] font-extrabold tracking-tight text-balance md:text-[clamp(2rem,5vh,4.5rem)]">
-              {slide.title}
-            </p>
-            <p className="mx-auto mt-[clamp(0.75rem,1.5vh,1.25rem)] max-w-[21.7em] text-base font-medium md:text-[clamp(1rem,2.1vh,1.375rem)]">
-              {slide.description}
-            </p>
-          </div>
-        ))}
+    <motion.div style={{ opacity, y }} className="relative">
+      <div className="grid text-center [grid-template-areas:'slide']">
+        <div
+          aria-hidden
+          className="invisible grid [grid-area:slide] [grid-template-areas:'measure']"
+        >
+          {slides.map((slide) => (
+            <div key={slide.title} className="[grid-area:measure]">
+              <p className="m-auto max-w-[22ch] text-3xl leading-[1.12] font-extrabold tracking-tight text-balance md:text-[clamp(2rem,5vh,4.5rem)]">
+                {slide.title}
+              </p>
+              <p className="mx-auto mt-[clamp(0.75rem,1.5vh,1.25rem)] max-w-[21.7em] text-base font-medium md:text-[clamp(1rem,2.1vh,1.375rem)]">
+                {slide.description}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeIndex}
+            exit={{ opacity: 0, y: -16 }}
+            className="[grid-area:slide]"
+          >
+            <motion.h1
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="m-auto max-w-[22ch] text-3xl leading-[1.12] font-extrabold tracking-tight text-balance text-white md:text-[clamp(2rem,5vh,4.5rem)]"
+            >
+              {activeSlide.title}
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.5,
+                delay: 0.2,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="mx-auto mt-[clamp(0.75rem,1.5vh,1.25rem)] max-w-[21.7em] text-base font-medium text-white md:text-[clamp(1rem,2.1vh,1.375rem)]"
+            >
+              {activeSlide.description}
+            </motion.p>
+          </motion.div>
+        </AnimatePresence>
+
+        <span aria-live="polite" className="sr-only">
+          {activeSlide.title}. {activeSlide.description}
+        </span>
       </div>
 
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={activeIndex}
-          exit={{ opacity: 0, y: -16 }}
-          className="[grid-area:slide]"
-        >
-          <motion.h1
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="m-auto max-w-[22ch] text-3xl leading-[1.12] font-extrabold tracking-tight text-balance text-white md:text-[clamp(2rem,5vh,4.5rem)]"
-          >
-            {activeSlide.title}
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="mx-auto mt-[clamp(0.75rem,1.5vh,1.25rem)] max-w-[21.7em] text-base font-medium text-white md:text-[clamp(1rem,2.1vh,1.375rem)]"
-          >
-            {activeSlide.description}
-          </motion.p>
-        </motion.div>
-      </AnimatePresence>
+      {slides.length > 1 ? (
+        <div className="mt-[clamp(1rem,2.5vh,1.75rem)] flex items-center justify-center gap-2">
+          {slides.map((slide, index) => {
+            const isActive = index === activeIndex
 
-      <span aria-live="polite" className="sr-only">
-        {activeSlide.title}. {activeSlide.description}
-      </span>
+            return (
+              <button
+                key={slide.title}
+                type="button"
+                onClick={() => setActiveIndex(index)}
+                aria-label={`Ir para o slide ${index + 1}`}
+                aria-current={isActive ? 'true' : undefined}
+                className={`h-2.5 cursor-pointer rounded-full transition-all duration-500 ease-out ${
+                  isActive
+                    ? 'bg-primary group-has-[[data-service=auto-detailing]_button:hover]/page:bg-background w-8'
+                    : 'w-2.5 bg-white'
+                }`}
+              />
+            )
+          })}
+        </div>
+      ) : null}
     </motion.div>
   )
 }

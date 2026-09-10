@@ -1,3 +1,6 @@
+'use client'
+
+import { Tooltip } from 'radix-ui'
 import { FaWhatsapp } from 'react-icons/fa6'
 
 const WHATSAPP_NUMBER = '5511999999999'
@@ -15,19 +18,39 @@ export function WhatsAppButton({
   const href = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`
 
   return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Fale conosco pelo WhatsApp"
-      className="group bg-whatsapp fixed right-5 bottom-[calc(env(safe-area-inset-bottom)+5.5rem)] z-40 inline-flex items-center gap-0 rounded-full border-2 border-white p-3 text-sm font-bold text-white shadow-lg transition-[gap,padding] duration-300 ease-out hover:gap-2 hover:pr-5 focus-visible:gap-2 focus-visible:pr-5 motion-safe:animate-[whatsapp-bounce_3s_ease-in-out_infinite] md:bottom-6"
-    >
-      <span className="text-3xl text-white">
-        <FaWhatsapp />
-      </span>
-      <span className="grid grid-cols-[0fr] overflow-hidden transition-[grid-template-columns] duration-300 ease-out group-hover:grid-cols-[1fr] group-focus-visible:grid-cols-[1fr]">
-        <span className="overflow-hidden whitespace-nowrap">WhatsApp</span>
-      </span>
-    </a>
+    <div className="group/wa fixed right-5 bottom-[calc(env(safe-area-inset-bottom)+5.5rem)] z-40 inline-flex md:bottom-6">
+      <span
+        aria-hidden
+        className="bg-whatsapp pointer-events-none absolute -inset-4 rounded-full opacity-60 motion-safe:animate-[whatsapp-pulse_1.8s_ease-out_infinite]"
+      />
+      <Tooltip.Provider delayDuration={200}>
+        <Tooltip.Root>
+          <Tooltip.Trigger asChild>
+            <a
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Fale conosco pelo WhatsApp"
+              className="bg-whatsapp relative inline-flex items-center rounded-full border-2 border-white p-3 text-white shadow-lg motion-safe:animate-[whatsapp-bounce_3s_ease-in-out_infinite]"
+            >
+              <span className="text-3xl text-white">
+                <FaWhatsapp />
+              </span>
+            </a>
+          </Tooltip.Trigger>
+
+          <Tooltip.Portal>
+            <Tooltip.Content
+              side="left"
+              sideOffset={12}
+              className="bg-whatsapp z-50 rounded-md px-3 py-1.5 text-sm font-semibold text-white shadow-lg select-none data-[state=closed]:animate-[tooltip-fade-out_150ms_ease-in] data-[state=delayed-open]:animate-[tooltip-fade-in_150ms_ease-out]"
+            >
+              Fale conosco pelo WhatsApp
+              <Tooltip.Arrow className="fill-whatsapp" />
+            </Tooltip.Content>
+          </Tooltip.Portal>
+        </Tooltip.Root>
+      </Tooltip.Provider>
+    </div>
   )
 }
