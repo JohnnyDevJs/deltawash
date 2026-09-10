@@ -1,30 +1,6 @@
 import Link from 'next/link'
-import type { ReactNode } from 'react'
-import { LuContact, LuHouse, LuMessageCircleWarning } from 'react-icons/lu'
 
-type NavigationItem = {
-  label: string
-  href: string
-  icon: ReactNode
-}
-
-const navigationItems: NavigationItem[] = [
-  {
-    label: 'Início',
-    href: '/',
-    icon: <LuHouse className="size-6" />,
-  },
-  {
-    label: 'Sobre nós',
-    href: '/sobre',
-    icon: <LuMessageCircleWarning className="size-6" />,
-  },
-  {
-    label: 'Fale Conosco',
-    href: '/contato',
-    icon: <LuContact className="size-6" />,
-  },
-]
+import { navigationItems } from '@/constants/navigation'
 
 export type NavigationProps = {
   activeHref?: string

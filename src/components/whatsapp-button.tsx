@@ -3,8 +3,7 @@
 import { Tooltip } from 'radix-ui'
 import { FaWhatsapp } from 'react-icons/fa6'
 
-const WHATSAPP_NUMBER = '5511999999999'
-const WHATSAPP_MESSAGE = 'Olá! Gostaria de saber mais sobre os serviços.'
+import { WHATSAPP_MESSAGE, WHATSAPP_NUMBER } from '@/constants/whatsapp'
 
 export type WhatsAppButtonProps = {
   phone?: string

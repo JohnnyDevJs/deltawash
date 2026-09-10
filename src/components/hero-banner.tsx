@@ -3,10 +3,7 @@
 import { AnimatePresence, motion, useScroll, useTransform } from 'motion/react'
 import { useEffect, useRef, useState } from 'react'
 
-export type HeroSlide = {
-  title: string
-  description: string
-}
+import type { HeroSlide } from '@/constants/hero'
 
 const SWIPE_THRESHOLD = 50
 
