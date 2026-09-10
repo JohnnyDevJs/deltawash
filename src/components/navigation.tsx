@@ -34,7 +34,7 @@ export function Navigation({ activeHref = '/' }: NavigationProps) {
   return (
     <nav
       aria-label="Menu principal"
-      className="border-secondary/30 bg-background-dark/95 fixed inset-x-0 bottom-0 z-30 border-t backdrop-blur-sm md:hidden"
+      className="bg-background fixed inset-x-0 bottom-0 z-30 md:hidden"
     >
       <ul className="flex items-stretch justify-around">
         {navigationItems.map((item) => {
@@ -45,7 +45,7 @@ export function Navigation({ activeHref = '/' }: NavigationProps) {
               <Link
                 href={item.href}
                 aria-current={isActive ? 'page' : undefined}
-                className={`flex flex-col items-center gap-1 py-3 text-[11px] font-semibold tracking-wide uppercase transition-colors ${
+                className={`flex flex-col items-center gap-1 py-2 text-[11px] font-semibold tracking-wide uppercase transition-colors ${
                   isActive ? 'text-secondary' : 'text-white'
                 }`}
               >
