@@ -28,7 +28,7 @@ const heroSlides: HeroSlide[] = [
 
 export default function Home() {
   return (
-    <div className="group/page relative flex min-h-dvh flex-col pb-[4.5rem] md:h-dvh md:overflow-hidden md:pb-0">
+    <div className="group/page relative flex min-h-dvh flex-col pb-[4rem] md:h-dvh md:overflow-hidden md:pb-0">
       <Image
         src="/images/bg-homepage-deltawash.png"
         alt=""

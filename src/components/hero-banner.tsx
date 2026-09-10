@@ -1,6 +1,6 @@
 'use client'
 
-import { AnimatePresence, motion } from 'motion/react'
+import { AnimatePresence, motion, useScroll, useTransform } from 'motion/react'
 import { useEffect, useState } from 'react'
 
 export type HeroSlide = {
@@ -15,6 +15,9 @@ export type HeroBannerProps = {
 
 export function HeroBanner({ slides, interval = 7000 }: HeroBannerProps) {
   const [activeIndex, setActiveIndex] = useState(0)
+  const { scrollY } = useScroll()
+  const opacity = useTransform(scrollY, [0, 160], [1, 0])
+  const y = useTransform(scrollY, [0, 160], [0, -24])
 
   useEffect(() => {
     if (slides.length <= 1) {
@@ -31,7 +34,10 @@ export function HeroBanner({ slides, interval = 7000 }: HeroBannerProps) {
   const activeSlide = slides[activeIndex]
 
   return (
-    <div className="relative grid text-center [grid-template-areas:'slide']">
+    <motion.div
+      style={{ opacity, y }}
+      className="relative grid text-center [grid-template-areas:'slide']"
+    >
       <div
         aria-hidden
         className="invisible grid [grid-area:slide] [grid-template-areas:'measure']"
@@ -76,6 +82,6 @@ export function HeroBanner({ slides, interval = 7000 }: HeroBannerProps) {
       <span aria-live="polite" className="sr-only">
         {activeSlide.title}. {activeSlide.description}
       </span>
-    </div>
+    </motion.div>
   )
 }
