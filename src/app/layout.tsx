@@ -12,7 +12,7 @@ const montserrat = Montserrat({
 })
 
 export const metadata: Metadata = {
-  title: 'DeltaWash | Advanced Cleaning',
+  title: 'Deltawash | Advanced Cleaning',
   description:
     'Deep Clean e Auto Detailing com o padrão de excelência DeltaWash.',
 }

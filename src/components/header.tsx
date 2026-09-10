@@ -1,7 +1,7 @@
-import Image from 'next/image'
 import Link from 'next/link'
 
 import { Container } from '@/components/container'
+import { LogoDeltaWash } from '@/components/logo-deltawash'
 import { MobileMenu } from '@/components/mobile-menu'
 import { FadeInHeader } from '@/components/motion/fade-in-header'
 import { Social } from '@/components/social'
@@ -25,13 +25,10 @@ export function Header({ activeHref = '/' }: HeaderProps) {
     <FadeInHeader className="w-full shrink-0 py-[clamp(1.25rem,3vh,2.5rem)]">
       <Container className="flex items-center justify-between gap-8">
         <Link href="/" aria-label="DeltaWash Advanced Cleaning">
-          <Image
-            src="/images/logo-deltawash-light.svg"
-            alt="DeltaWash Advanced Cleaning"
-            width={197}
-            height={68}
-            priority
-            className="h-[clamp(3rem,7vh,4rem)] w-auto"
+          <LogoDeltaWash
+            role="img"
+            aria-label="DeltaWash Advanced Cleaning"
+            className="text-primary h-[clamp(3rem,7vh,4rem)] w-auto transition-colors duration-700 ease-out group-has-[[data-service=auto-detailing]_button:hover]/page:text-white"
           />
         </Link>
 

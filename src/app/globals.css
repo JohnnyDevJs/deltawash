@@ -53,10 +53,21 @@
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
+  /* animation: background-pulse 12s ease-in-out infinite; */
   color: var(--foreground);
   font-family: var(--font-sans);
   overflow-x: hidden;
+}
+
+@keyframes background-pulse {
+  0%,
+  100% {
+    background-color: var(--background);
+  }
+  50% {
+    background-color: var(--primary);
+  }
 }
 
 @keyframes overlay-fade-in {
@@ -102,5 +113,27 @@ body {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+@keyframes tooltip-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes tooltip-fade-out {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.96);
   }
 }
