@@ -4,9 +4,9 @@ import { Button } from '@/components/button'
 import { Container } from '@/components/container'
 import { Footer } from '@/components/footer'
 import { Header } from '@/components/header'
+import type { HeroSlide } from '@/components/hero-banner'
+import { HeroBanner } from '@/components/hero-banner'
 import { FadeIn } from '@/components/motion/fade-in'
-import { HoverLift } from '@/components/motion/hover-lift'
-import { Stagger, StaggerItem } from '@/components/motion/stagger'
 
 type ServiceCard = {
   title: string
@@ -15,6 +15,7 @@ type ServiceCard = {
   buttonLabel: string
   buttonVariant: 'secondary' | 'outline'
   align: 'start' | 'end'
+  slug: string
 }
 
 const services: ServiceCard[] = [
@@ -25,6 +26,7 @@ const services: ServiceCard[] = [
     buttonLabel: 'Acessar Deep Clean',
     buttonVariant: 'secondary',
     align: 'start',
+    slug: 'deep-clean',
   },
   {
     title: 'Auto Detailing',
@@ -33,12 +35,31 @@ const services: ServiceCard[] = [
     buttonLabel: 'Acessar Auto Detailing',
     buttonVariant: 'outline',
     align: 'end',
+    slug: 'auto-detailing',
+  },
+]
+
+const heroSlides: HeroSlide[] = [
+  {
+    title: 'Do seu espaço ao seu carro, cuidado em cada detalhe.',
+    description:
+      'Deep Clean e Auto Detailing com o padrão de excelência DeltaWash.',
+  },
+  {
+    title: 'Excelência que transforma ambientes e veículos.',
+    description:
+      'Limpeza profunda e estética automotiva com atenção, qualidade e cuidado em cada detalhe.',
+  },
+  {
+    title: 'Cuidado completo, dentro e fora de casa.',
+    description:
+      'Soluções especializadas que renovam seus espaços e valorizam cada detalhe do seu veículo.',
   },
 ]
 
 export default function Home() {
   return (
-    <div className="relative flex min-h-dvh flex-col md:h-dvh md:overflow-hidden">
+    <div className="group/page relative flex min-h-dvh flex-col md:h-dvh md:overflow-hidden">
       <Image
         src="/images/bg-homepage-deltawash.png"
         alt=""
@@ -48,24 +69,17 @@ export default function Home() {
         className="-z-10 object-cover object-bottom"
       />
 
+      <div
+        aria-hidden
+        className="bg-primary pointer-events-none absolute inset-0 -z-20 origin-left scale-x-0 transition-transform duration-700 ease-out group-has-[[data-service=auto-detailing]_button:hover]/page:scale-x-100"
+      />
+
       <Header activeHref="/" />
 
       <main className="flex min-h-0 flex-1 flex-col">
-        <Stagger delay={0.15} stagger={0.14} className="shrink-0">
-          <Container className="pb-[clamp(1rem,3vh,2.5rem)] text-center">
-            <StaggerItem>
-              <h1 className="m-auto max-w-[22ch] text-[clamp(2rem,5vh,4.5rem)] leading-[1.12] font-extrabold tracking-tight text-balance text-white">
-                Do seu espaço ao seu carro, cuidado em cada detalhe.
-              </h1>
-            </StaggerItem>
-            <StaggerItem>
-              <p className="mx-auto mt-[clamp(0.75rem,1.5vh,1.25rem)] max-w-[21.7em] text-[clamp(1rem,2.1vh,1.375rem)] font-medium text-white">
-                Deep Clean e Auto Detailing com o padrão de excelência
-                DeltaWash.
-              </p>
-            </StaggerItem>
-          </Container>
-        </Stagger>
+        <Container className="shrink-0 pb-[clamp(1rem,3vh,2.5rem)]">
+          <HeroBanner slides={heroSlides} />
+        </Container>
 
         <Container className="grid min-h-0 grid-cols-1 items-end gap-12 pb-8 md:mt-auto md:flex-1 md:grid-cols-2 md:gap-8 md:pb-[clamp(0.75rem,2vh,1.5rem)]">
           {services.map((service, index) => (
@@ -76,17 +90,18 @@ export default function Home() {
                 service.align === 'start' ? 'md:items-start' : 'md:items-end'
               }`}
             >
-              <div className="flex min-h-0 flex-col items-center gap-[clamp(0.75rem,2vh,1.5rem)]">
-                <HoverLift>
-                  <Image
-                    src={service.logoSrc}
-                    alt={`DeltaWash ${service.title}`}
-                    width={288}
-                    height={288}
-                    priority
-                    className="w-48 sm:w-56 md:h-[clamp(5.5rem,25vh,18rem)] md:w-auto"
-                  />
-                </HoverLift>
+              <div
+                data-service={service.slug}
+                className="group flex min-h-0 flex-col items-center gap-[clamp(0.75rem,2vh,1.5rem)]"
+              >
+                <Image
+                  src={service.logoSrc}
+                  alt={`DeltaWash ${service.title}`}
+                  width={288}
+                  height={288}
+                  priority
+                  className="w-48 transition-transform duration-500 ease-out group-has-[button:hover]:-translate-y-2 group-has-[button:hover]:scale-105 sm:w-56 md:h-[clamp(5.5rem,25vh,18rem)] md:w-auto"
+                />
                 <p className="text-[clamp(0.875rem,1.9vh,1.25rem)] font-medium text-white">
                   {service.description}
                 </p>

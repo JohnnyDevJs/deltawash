@@ -29,4 +29,20 @@ export function ComponentName({ keyName }: ComponentNameProps) {
 }
 ```
 
+## Fast Task Execution
+
+- Never run production builds automatically.
+- Do not execute `npm run build`, `pnpm build`, `yarn build`, `bun run build`, `next build`, `turbo build`, or equivalent commands unless explicitly requested.
+- Never run lint automatically.
+- Do not execute `npm run lint`, `pnpm lint`, `yarn lint`, `bun run lint`, `eslint`, `next lint`, `turbo lint`, or equivalent commands unless explicitly requested.
+- Do not run lint after creating or modifying files.
+- Do not start development servers or long-running processes unless explicitly requested.
+- Avoid running the entire test suite or performing a full type-check for small changes.
+- Prefer fast validation by inspecting only the files modified.
+- Do not install, remove, or update dependencies unless required by the task.
+- Inspect only the files necessary to complete the request.
+- Do not refactor, format, or modify unrelated files.
+- Keep changes minimal and complete tasks as quickly as possible.
+- If a build, lint, or full validation is recommended, inform the user of the command without executing it.
+
 <!-- END:nextjs-agent-rules -->
