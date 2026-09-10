@@ -2,6 +2,10 @@
 
 import { motion, useMotionValueEvent, useScroll, useSpring } from 'motion/react'
 import type { ComponentProps, ReactNode } from 'react'
+import { useRef } from 'react'
+
+const SCROLL_NOISE = 8
+const REVEAL_OFFSET = 24
 
 export type FadeInHeaderProps = ComponentProps<typeof motion.header> & {
   children: ReactNode
@@ -10,18 +14,23 @@ export type FadeInHeaderProps = ComponentProps<typeof motion.header> & {
 export function FadeInHeader({ children, ...props }: FadeInHeaderProps) {
   const { scrollY } = useScroll()
   const backgroundOpacity = useSpring(0, { stiffness: 200, damping: 30 })
+  const lastSettledY = useRef(0)
 
   useMotionValueEvent(scrollY, 'change', (current) => {
-    const previous = scrollY.getPrevious() ?? 0
-
-    if (current > previous && current > 16) {
-      backgroundOpacity.set(1)
+    if (current <= REVEAL_OFFSET) {
+      lastSettledY.current = current
+      backgroundOpacity.set(0)
       return
     }
 
-    if (current < previous) {
-      backgroundOpacity.set(0)
+    const delta = current - lastSettledY.current
+
+    if (Math.abs(delta) < SCROLL_NOISE) {
+      return
     }
+
+    lastSettledY.current = current
+    backgroundOpacity.set(delta > 0 ? 1 : 0)
   })
 
   return (
