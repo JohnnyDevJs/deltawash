@@ -44,7 +44,9 @@ export function HeroBanner({ slides, interval = 7000 }: HeroBannerProps) {
 
   return (
     <motion.div style={{ opacity, y }} className="relative">
-      <div
+      <motion.div
+        layout
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         className="touch-pan-y text-center"
         onTouchStart={(event) => {
           touchStartX.current = event.touches[0].clientX
@@ -95,10 +97,14 @@ export function HeroBanner({ slides, interval = 7000 }: HeroBannerProps) {
         <span aria-live="polite" className="sr-only">
           {activeSlide.title}. {activeSlide.description}
         </span>
-      </div>
+      </motion.div>
 
       {slides.length > 1 ? (
-        <div className="mt-[clamp(0.5rem,1.5vh,1rem)] flex items-center justify-center gap-2">
+        <motion.div
+          layout
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-[clamp(0.5rem,1.5vh,1rem)] flex items-center justify-center gap-2"
+        >
           {slides.map((slide, index) => {
             const isActive = index === activeIndex
 
@@ -117,7 +123,7 @@ export function HeroBanner({ slides, interval = 7000 }: HeroBannerProps) {
               />
             )
           })}
-        </div>
+        </motion.div>
       ) : null}
     </motion.div>
   )
