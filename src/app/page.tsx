@@ -36,7 +36,7 @@ export default function Home() {
         fill
         priority
         sizes="(max-width: 767px) 0px, 100vw"
-        className="-z-10 hidden object-cover object-bottom md:block"
+        className="fixed -z-10 hidden object-cover object-bottom md:absolute md:block"
       />
 
       <Image
@@ -45,17 +45,17 @@ export default function Home() {
         fill
         priority
         sizes="(min-width: 768px) 0px, 100vw"
-        className="-z-10 object-cover object-bottom md:hidden"
+        className="fixed -z-10 object-cover object-bottom md:absolute md:hidden"
       />
 
       <div
         aria-hidden
-        className="from-background via-background/68 to-background/82 pointer-events-none absolute inset-0 -z-10 bg-linear-to-b via-55% md:hidden"
+        className="from-background via-background/68 to-background/82 pointer-events-none fixed inset-0 -z-10 bg-linear-to-b via-55% md:absolute md:hidden"
       />
 
       <div
         aria-hidden
-        className="from-primary/85 via-primary/55 to-primary/70 md:from-primary md:via-primary md:to-primary pointer-events-none absolute inset-0 z-[-5] origin-left scale-x-0 bg-linear-to-b via-55% transition-transform duration-700 ease-out group-has-[[data-service=auto-detailing]_button:hover]/page:scale-x-100 md:-z-20"
+        className="from-primary/85 via-primary/55 to-primary/70 md:from-primary md:via-primary md:to-primary pointer-events-none fixed inset-0 z-[-5] origin-left scale-x-0 bg-linear-to-b via-55% transition-transform duration-700 ease-out group-has-[[data-service=auto-detailing]_button:hover]/page:scale-x-100 md:absolute md:-z-20"
       />
 
       <Header activeHref="/" />

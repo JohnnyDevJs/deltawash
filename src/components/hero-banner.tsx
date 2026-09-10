@@ -1,12 +1,14 @@
 'use client'
 
 import { AnimatePresence, motion, useScroll, useTransform } from 'motion/react'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export type HeroSlide = {
   title: string
   description: string
 }
+
+const SWIPE_THRESHOLD = 50
 
 export type HeroBannerProps = {
   slides: HeroSlide[]
@@ -15,6 +17,7 @@ export type HeroBannerProps = {
 
 export function HeroBanner({ slides, interval = 7000 }: HeroBannerProps) {
   const [activeIndex, setActiveIndex] = useState(0)
+  const touchStartX = useRef<number | null>(null)
   const { scrollY } = useScroll()
   const opacity = useTransform(scrollY, [0, 160], [1, 0])
   const y = useTransform(scrollY, [0, 160], [0, -24])
@@ -41,26 +44,31 @@ export function HeroBanner({ slides, interval = 7000 }: HeroBannerProps) {
 
   return (
     <motion.div style={{ opacity, y }} className="relative">
-      <div className="text-center">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeIndex}
-            exit={{ opacity: 0, y: -16 }}
-            drag={slides.length > 1 ? 'x' : false}
-            dragConstraints={{ left: 0, right: 0 }}
-            dragElastic={0.2}
-            onDragEnd={(_, info) => {
-              if (info.offset.x < -60) {
-                goToNext()
-                return
-              }
+      <div
+        className="touch-pan-y text-center"
+        onTouchStart={(event) => {
+          touchStartX.current = event.touches[0].clientX
+        }}
+        onTouchEnd={(event) => {
+          if (touchStartX.current === null) {
+            return
+          }
 
-              if (info.offset.x > 60) {
-                goToPrevious()
-              }
-            }}
-            className="cursor-grab touch-pan-y active:cursor-grabbing md:cursor-default"
-          >
+          const deltaX = event.changedTouches[0].clientX - touchStartX.current
+          touchStartX.current = null
+
+          if (deltaX < -SWIPE_THRESHOLD) {
+            goToNext()
+            return
+          }
+
+          if (deltaX > SWIPE_THRESHOLD) {
+            goToPrevious()
+          }
+        }}
+      >
+        <AnimatePresence mode="wait">
+          <motion.div key={activeIndex} exit={{ opacity: 0, y: -16 }}>
             <motion.h1
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
