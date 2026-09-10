@@ -4,8 +4,9 @@ import { motion, useMotionValueEvent, useScroll, useSpring } from 'motion/react'
 import type { ComponentProps, ReactNode } from 'react'
 import { useRef } from 'react'
 
-const SCROLL_NOISE = 8
 const REVEAL_OFFSET = 24
+const REVEAL_DELTA = 8
+const HIDE_DELTA = 64
 
 export type FadeInHeaderProps = ComponentProps<typeof motion.header> & {
   children: ReactNode
@@ -14,23 +15,40 @@ export type FadeInHeaderProps = ComponentProps<typeof motion.header> & {
 export function FadeInHeader({ children, ...props }: FadeInHeaderProps) {
   const { scrollY } = useScroll()
   const backgroundOpacity = useSpring(0, { stiffness: 200, damping: 30 })
-  const lastSettledY = useRef(0)
+  const anchorY = useRef(0)
+  const isRevealed = useRef(false)
 
   useMotionValueEvent(scrollY, 'change', (current) => {
     if (current <= REVEAL_OFFSET) {
-      lastSettledY.current = current
+      anchorY.current = current
+      isRevealed.current = false
       backgroundOpacity.set(0)
       return
     }
 
-    const delta = current - lastSettledY.current
+    const delta = current - anchorY.current
 
-    if (Math.abs(delta) < SCROLL_NOISE) {
+    if (delta > 0) {
+      anchorY.current = current
+
+      if (!isRevealed.current && delta >= REVEAL_DELTA) {
+        isRevealed.current = true
+        backgroundOpacity.set(1)
+      }
+
       return
     }
 
-    lastSettledY.current = current
-    backgroundOpacity.set(delta > 0 ? 1 : 0)
+    if (!isRevealed.current) {
+      anchorY.current = current
+      return
+    }
+
+    if (-delta >= HIDE_DELTA) {
+      anchorY.current = current
+      isRevealed.current = false
+      backgroundOpacity.set(0)
+    }
   })
 
   return (
